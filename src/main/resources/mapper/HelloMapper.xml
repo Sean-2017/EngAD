@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.2//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="HelloMapper">
+	<resultMap id="HelloMap" type="com.engad.ade.entity.Hello">
+		<result column="name" jdbcType="VARCHAR" javaType="String" property="name" />
+		<result column="content" jdbcType="VARCHAR" javaType="String" property="content" />
+	</resultMap>
+	
+	<select id="queryHello" parameterType="java.util.Map" resultMap="HelloMap">
+		select * from Hello where 1=1
+		<if test="user_name!=null"> and name=#{hello}</if>
+	</select>
+</mapper>
