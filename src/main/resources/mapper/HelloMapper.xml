@@ -8,6 +8,12 @@
 	
 	<select id="queryHello" parameterType="java.util.Map" resultMap="HelloMap">
 		select * from Hello where 1=1
-		<if test="user_name!=null"> and name=#{hello}</if>
+		<if test="name!=null"> and name=#{name}</if>
 	</select>
+	
+	<insert id="insertHello" parameterType="com.engad.ade.entity.Hello" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO Hello (name, content)
+		VALUES(#{name}, #{content});
+	</insert>
+	
 </mapper>

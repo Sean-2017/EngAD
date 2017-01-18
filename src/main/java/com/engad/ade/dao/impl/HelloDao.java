@@ -15,4 +15,8 @@ public class HelloDao extends BaseMyBatisDao<Hello, Integer> implements IHelloDa
 		return query("HelloMapper."+"queryHello", map);
 	}
 
+	@Override
+	public int insertHello(Hello h) {
+		return insert("HelloMapper."+"insertHello", h);
+	}
 }

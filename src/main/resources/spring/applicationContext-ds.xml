@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
+						http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd 
+						http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<!-- 属性文件存放位置 -->
 	<context:property-placeholder location="classpath:jdbc.properties" />
-
-
+	
+	<!-- 统计监控数据库访问性能过滤器 -->
 	<bean id="stat-filter" class="com.alibaba.druid.filter.stat.StatFilter">
 		<property name="slowSqlMillis" value="3000" />
 		<property name="logSlowSql" value="true" />
 	</bean>
+	
+	<!-- 从库数据源配置 -->
 	<bean id="slaveDS" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
 		<property name="url" value="${jdbc.slave.url}" />
 		<property name="username" value="${jdbc.slave.user}" />
@@ -39,7 +49,8 @@
 	<bean id="jdbcCall" scope="prototype" class="org.springframework.jdbc.core.simple.SimpleJdbcCall">
 		<constructor-arg ref="slaveDS" />
 	</bean>
-
+	
+	<!-- 主库数据源配置 -->
 	<bean id="masterDS" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
 		<property name="url" value="${jdbc.master.url}" />
 		<property name="username" value="${jdbc.master.user}" />
