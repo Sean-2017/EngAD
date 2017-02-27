@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.2//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="EventClickMapper">
+	<resultMap id="EventClickMap" type="com.engad.ade.entity.EventClick">
+		<result column="put_id" jdbcType="BIGINT" javaType="Long" property="putId" />
+		<result column="app_id" jdbcType="BIGINT" javaType="Long" property="appId" />
+		<result column="seat_id" jdbcType="BIGINT" javaType="Long" property="seatId" />
+		<result column="ad_id" jdbcType="BIGINT" javaType="Long" property="adId" />
+		<result column="creative_id" jdbcType="BIGINT" javaType="Long" property="creativeId" />
+		<result column="is_payment" jdbcType="TINYINT" javaType="Boolean" property="isPayment" />
+		<result column="payment_amount" jdbcType="DECIMAL" javaType="Double" property="paymentAmount" />
+		<result column="is_income" jdbcType="TINYINT" javaType="Boolean" property="isIncome" />
+		<result column="income_amount" jdbcType="DECIMAL" javaType="Double" property="incomeAmount" />
+		<result column="resp_status" jdbcType="TINYINT" javaType="Integer" property="respStatus" />
+		<result column="payment_id" jdbcType="BIGINT" javaType="Long" property="paymentId" />
+		<result column="income_id" jdbcType="BIGINT" javaType="Long" property="incomeId" />
+		<result column="gmt_occur" jdbcType="TIMESTAMP" javaType="Date" property="gmtOccur" />
+	</resultMap>
+	
+	<select id="queryEventClick" parameterType="java.util.Map" resultMap="EventClickMap">
+		SELECT * From te_event_click WHERE 1=1
+		<if test="seatId!=null"> AND seat_id=#{seatId}</if>
+		<if test="adId!=null"> AND ad_id=#{adId}</if>
+	</select>
+	
+	<insert id="insertEventClick" parameterType="com.engad.ade.entity.EventClick" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO te_event_click (put_id,ad_id,creative_id,app_id,
+		seat_id,is_payment,payment_id,payment_amount,
+		is_income,income_id,income_amount,gmt_occur)
+		VALUES(#{putId}, #{adId}, #{creativeId}, #{appId},
+		#{seatId}, #{isPayment}, #{paymentId}, #{paymentAmount},
+		#{isIncome}, #{incomeId}, #{incomeAmount}, #{gmtOccur});
+	</insert>
+	
+</mapper>

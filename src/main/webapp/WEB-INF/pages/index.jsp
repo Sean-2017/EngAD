@@ -9,6 +9,9 @@
 <body>
     <h1>Message : ${message}</h1>
     <h2>当前时间:${date}</h2>
-    <a href="getHello">获取hello信息 </a>
+    <!-- 
+    <a href="getHello">获取hello信息 </a><br>
+     -->
+    <a href="http://localhost:8080/ade/click?ad=1188&target=http://www.galaxyinternet.com">点击事件计数 </a>
 </body>
 </html>

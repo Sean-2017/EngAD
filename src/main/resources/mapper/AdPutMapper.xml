@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.2//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AdPutMapper">
+	<resultMap id="AdPutMap" type="com.engad.ade.entity.AdPut">
+		<result column="req_id" jdbcType="VARCHAR" javaType="String" property="reqId" />
+		<result column="call_mode" jdbcType="TINYINT" javaType="Integer" property="callMode" />
+		<result column="app_id" jdbcType="BIGINT" javaType="Long" property="appId" />
+		<result column="seat_id" jdbcType="BIGINT" javaType="Long" property="seatId" />
+		<result column="ad_id" jdbcType="BIGINT" javaType="Long" property="adId" />
+		<result column="creative_id" jdbcType="BIGINT" javaType="Long" property="creativeId" />
+		<result column="req_content" jdbcType="VARCHAR" javaType="String" property="reqContent" />
+		<result column="put_status" jdbcType="TINYINT" javaType="Integer" property="putStatus" />
+		<result column="ad_from" jdbcType="TINYINT" javaType="Integer" property="adFrom" />
+		<result column="price" jdbcType="DECIMAL" javaType="Double" property="price" />
+		<result column="pricing_mode" jdbcType="TINYINT" javaType="Integer" property="pricingMode" />
+		<result column="resp_transfer_url" jdbcType="VARCHAR" javaType="String" property="respTransferUrl" />
+		<result column="resp_status" jdbcType="TINYINT" javaType="Integer" property="respStatus" />
+		<result column="resp_code" jdbcType="VARCHAR" javaType="String" property="respCode" />
+		<result column="resp_content" jdbcType="VARCHAR" javaType="String" property="respContent" />
+		<result column="gmt_req" jdbcType="TIMESTAMP" javaType="Date" property="gmtReq" />
+		<result column="gmt_resp" jdbcType="TIMESTAMP" javaType="Date" property="gmtResp" />
+	</resultMap>
+	
+	<select id="queryAdPut" parameterType="java.util.Map" resultMap="AdPutMap">
+		SELECT * FROM te_ad_put WHERE 1=1
+		<if test="reqId!=null"> AND req_id=#{reqId}</if>
+		<if test="seatId!=null"> AND seat_id=#{seatId}</if>
+	</select>
+	
+	<insert id="insertAdPut" parameterType="com.engad.ade.entity.AdPut" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO te_ad_put (req_id,call_mode,app_id,seat_id,ad_id,
+		creative_id,req_content,put_status,ad_from,
+		price,pricing_mode,resp_transfer_url,resp_status,
+		resp_code,resp_content,gmt_req,gmt_resp) 
+		VALUES(#{reqId}, #{callMode}, #{appId}, #{seatId}, #{adId},
+		#{creativeId}, #{reqContent}, #{putStatus}, #{adFrom},
+		#{price}, #{pricingMode}, #{respTransferUrl}, #{respStatus},
+		#{respCode}, #{respContent}, #{gmtReq}, #{gmtResp});
+	</insert>
+	
+</mapper>

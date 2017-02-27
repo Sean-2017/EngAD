@@ -28,7 +28,6 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
 		<servlet-name>springMVC</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	
 		
 	<!-- 查看druid的内置监控页面，路径是http://127.0.0.1:8080/druid/index.html -->
 	<servlet>

@@ -13,5 +13,8 @@
 	</settings>
     <mappers>
 		<mapper resource="mapper/HelloMapper.xml" />
+		<mapper resource="mapper/AdPutMapper.xml" />
+		<mapper resource="mapper/EventClickMapper.xml" />
+		<mapper resource="mapper/EventImpMapper.xml" />
     </mappers>
 </configuration>
